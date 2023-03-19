@@ -10,7 +10,10 @@
     </a>
     <span>ExamPortal</span>
     <span class="example-spacer"></span>
+
+
     <a
+    *ngIf="!active"
     [routerLink]="'/login'"
        mat-icon-button 
        class="example-icon favorite-icon" 
@@ -20,6 +23,7 @@
     </a>
 
     <a 
+    *ngIf="!active"
     [routerLink]="'/signup'"
        mat-icon-button 
        class="example-icon favorite-icon ml20 mr20" 
@@ -27,6 +31,24 @@
     >
     register
     </a>
+    <a
+      (click)="logout()" 
+      *ngIf="active"
+       mat-icon-button 
+       class="example-icon favorite-icon ml20 mr20" 
+       aria-label="Example icon-button with heart icon"
+    >
+    logout
+    </a>
+
+    <button
+      *ngIf="active && user"
+       mat-icon-button
+       class="example-icon favorite-icon ml20" 
+       aria-label="Example icon-button with heart icon"
+    >
+    {{user.username}}
+   </button>
     
   </mat-toolbar>
   
