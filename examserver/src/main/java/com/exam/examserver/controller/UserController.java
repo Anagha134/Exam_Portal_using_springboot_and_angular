@@ -1,10 +1,12 @@
 package com.exam.examserver.controller;
 
+import com.exam.examserver.helper.UserFoundException;
 import com.exam.examserver.model.Role;
 import com.exam.examserver.model.User;
 import com.exam.examserver.model.UserRole;
 import com.exam.examserver.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,5 +56,10 @@ public class UserController {
     public  void deleteUser(@PathVariable("userId") Long userId){
         this.userService.deleteUser(userId);
 
+    }
+
+    public ResponseEntity<?> exceptionHandler(UserFoundException ex){
+
+        return ResponseEntity.ok(ex.getMessage());
     }
 }
