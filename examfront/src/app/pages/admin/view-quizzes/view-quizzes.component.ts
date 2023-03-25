@@ -15,7 +15,7 @@ export class ViewQuizzesComponent implements OnInit {
       title:'Basic Java Quiz',
       description:'The Java SE is a computing-based platform and used for developing desktop or Window based applications.',
       maxMarks:'50',
-      numberOfQuestion:'20',
+      numberOfQuestions:'20',
       active:'',
       category:{
         title:'Programming',
@@ -26,7 +26,7 @@ export class ViewQuizzesComponent implements OnInit {
       title:'Basic Java Quiz',
       description:'The Java SE is a computing-based platform and used for developing desktop or Window based applications.',
       maxMarks:'50',
-      numberOfQuestion:'20',
+      numberOfQuestions:'20',
       active:'',
       category:{
         title:'Programming',
@@ -76,21 +76,4 @@ export class ViewQuizzesComponent implements OnInit {
     });
 
   }
-
-
-
-  
-
 }
-
-
-// this._quiz.deleteQuiz(qId).subscribe(
-//   (data:any)=>{
-//     this.quizzes = this.quizzes.filter((quiz) => quiz.qId != qId);
-//     Swal.fire('Success!!','Quiz Deleted','success');
-
-//   },
-//   (error)=>{
-//     Swal.fire('Error!!','Error in deleting quiz','error');
-//   }
-// );
