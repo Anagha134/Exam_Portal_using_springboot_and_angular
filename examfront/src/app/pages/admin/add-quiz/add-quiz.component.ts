@@ -59,6 +59,27 @@ export class AddQuizComponent implements OnInit{
       return;
     }
 
+    if(this.quizData.category.cid==''|| this.quizData.category==null){
+      this._snack.open('Category is required!!','',{
+        duration:3000,
+      });
+      return;
+    }
+    if(this.quizData.maxMarks==''|| this.quizData.maxMarks==null){
+      this._snack.open('Marks required !!','',{
+        duration:3000,
+      });
+      return;
+    }
+
+    if(this.quizData.numberOfQuestions==''|| this.quizData.numberOfQuestions==null){
+      this._snack.open('Number of questions is required!!','',{
+        duration:3000,
+      });
+      return;
+    }
+
+
     //validation
 
     //call server

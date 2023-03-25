@@ -29,6 +29,7 @@
                             <mat-form-field  class="w100" appearance="outline">
                                 <mat-label>Maximum marks</mat-label>
                                 <input 
+                                required
                                 [(ngModel)]="quizData.maxMarks"
                                 matInput  type="text" name="maxMarks" placeholder="Enter here">
                             </mat-form-field>
@@ -38,6 +39,7 @@
                             <mat-form-field  class="w100" appearance="outline">
                                 <mat-label>Number of Question</mat-label>
                                 <input
+                                required
                                 [(ngModel)]="quizData.numberOfQuestions" 
                                 matInput  type="text" name="numberOfQuestion" placeholder="Enter here">
                             </mat-form-field>
