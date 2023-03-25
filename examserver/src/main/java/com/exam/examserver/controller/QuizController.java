@@ -32,6 +32,8 @@ public class QuizController {
         return ResponseEntity.ok(this.quizService.getQuizzes());
     }
 
+
+
     //get single quiz
     @GetMapping("/{qid}")
     public Quiz quiz(@PathVariable("qid") Long qid){
