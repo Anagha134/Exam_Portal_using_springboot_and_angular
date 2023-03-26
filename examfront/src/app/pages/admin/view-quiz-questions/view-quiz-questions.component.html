@@ -43,7 +43,7 @@
                 </mat-card-content>
                 <mat-card-actions>
                     <button mat-raised-button (click)="deleteQuestion(q.quesId)" color="primary">Delete</button>
-                    <button mat-raised-button color="accent" class="ml10">Update</button>
+                    <button mat-raised-button color="accent"  class="ml10" [routerLink]="'/admin/question/' + q.quesId">Update</button>
                 </mat-card-actions>
             </mat-card>
         </div>
