@@ -17,6 +17,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { AdminGuard } from './services/admin.guard';
 import { NormalGuard } from './services/normal.guard';
+import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
 
 const routes: Routes = [
   {
@@ -86,8 +87,13 @@ const routes: Routes = [
   {
     path:'user-dashboard',
     component:UserDashboardComponent,
-    pathMatch:'full',
     canActivate:[NormalGuard],
+    children:[
+      {
+        path:':catId',
+        component:LoadQuizComponent,
+      },
+    ]
   },
 ];
 
