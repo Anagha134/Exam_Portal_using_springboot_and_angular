@@ -18,6 +18,7 @@ import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboa
 import { AdminGuard } from './services/admin.guard';
 import { NormalGuard } from './services/normal.guard';
 import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
+import { InstructionsComponent } from './pages/user/instructions/instructions.component';
 
 const routes: Routes = [
   {
@@ -92,6 +93,11 @@ const routes: Routes = [
       {
         path:':catId',
         component:LoadQuizComponent,
+      },
+      {
+        path:'instructions/:qid',
+        component:InstructionsComponent
+
       },
     ]
   },
