@@ -19,6 +19,8 @@ export class StartComponent implements OnInit{
 
   isSubmit = false;
 
+  timer:any;
+
   constructor(private locationSt:LocationStrategy,private _route:ActivatedRoute,private _question:QuestionService){}
   
   ngOnInit(): void {
@@ -32,12 +34,17 @@ export class StartComponent implements OnInit{
     this._question.getQuestionsOfQuizForTest(this.qid).subscribe(
       (data:any)=>{
         this.questions=data;
+        // each question will have 2 minutes to solve and multiple by 60 sec
+        // timer contains times in seconds.
+        this.timer=this.questions.length* 2 * 60;
+
 
         this.questions.forEach( (q: any) => {
           q['givenAnswer'] = '';
         });
 
         console.log(data);
+        this.startTimer();
         
       },(error)=>{
         console.log(error);
@@ -65,6 +72,38 @@ export class StartComponent implements OnInit{
     }).then((e)=>{
       if(e.isConfirmed){
         //calculation
+        this.evalQuiz();
+      }
+    });
+  }
+
+
+  startTimer(){
+    // there is function in windows object that take two parameters
+    // one is callback func and second is time in millisecond -- after the time is completed it calls the callback func
+
+    let t = window.setInterval(()=>{
+      //code -- gets call after 1 sec.
+      if(this.timer <= 0){
+        this.evalQuiz();
+        clearInterval(t);
+        // clear interval will clear the rest of the things 
+      }else{
+        this.timer--;
+      }
+
+    },1000)
+  }
+
+
+  getFormattedTime(){
+    let min = Math.floor(this.timer/60);
+    let ss=this.timer-min*60;
+    return `${min} min : ${ss} sec`;
+  }
+
+
+  evalQuiz(){
         this.isSubmit = true;
         
         this.questions.forEach((q:any) =>{
@@ -82,7 +121,5 @@ export class StartComponent implements OnInit{
         console.log("correct answers :" +this.correctAnswers);
         console.log("marks got :"+ this.marksGot);
         console.log("attempted :"+ this.attempted);
-      }
-    });
   }
 }

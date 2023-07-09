@@ -40,6 +40,8 @@ import {SidebarComponent as UserSidebar} from './pages/user/sidebar/sidebar.comp
 import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
 import { InstructionsComponent } from './pages/user/instructions/instructions.component';
 import { StartComponent } from './pages/user/start/start.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 @NgModule({
   declarations: [
@@ -84,7 +86,8 @@ import { StartComponent } from './pages/user/start/start.component';
     MatSlideToggleModule,
     MatSelectModule,
     CKEditorModule,
-
+    MatProgressSpinnerModule,
+    
 
   ],
   providers: [authInterceptorProviders],
