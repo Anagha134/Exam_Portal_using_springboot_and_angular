@@ -13,6 +13,12 @@ export class StartComponent implements OnInit{
   
   qid:any;
   questions:any;
+  marksGot=0;
+  correctAnswers=0;
+  attempted=0;
+
+  isSubmit = false;
+
   constructor(private locationSt:LocationStrategy,private _route:ActivatedRoute,private _question:QuestionService){}
   
   ngOnInit(): void {
@@ -26,6 +32,11 @@ export class StartComponent implements OnInit{
     this._question.getQuestionsOfQuizForTest(this.qid).subscribe(
       (data:any)=>{
         this.questions=data;
+
+        this.questions.forEach( (q: any) => {
+          q['givenAnswer'] = '';
+        });
+
         console.log(data);
         
       },(error)=>{
@@ -41,6 +52,37 @@ export class StartComponent implements OnInit{
     history.pushState(null, location.href);
     this.locationSt.onPopState(()=>{
       history.pushState(null, location.href);
+    });
+  }
+
+  submitQuiz()
+  {
+    Swal.fire({
+      title:'Do You want to submit the Quiz',
+      showCancelButton: true,
+      confirmButtonText: `Submit`,
+      icon:'info',
+    }).then((e)=>{
+      if(e.isConfirmed){
+        //calculation
+        this.isSubmit = true;
+        
+        this.questions.forEach((q:any) =>{
+          if(q.givenAnswer == q.answer){
+            this.correctAnswers++;
+            let marksSingle = this.questions[0].quiz.maxMarks/this.questions.length;
+            this.marksGot += marksSingle;
+          }
+
+          if(q.givenAnswer.trim() != ''){
+            this.attempted++;
+          }
+        });
+
+        console.log("correct answers :" +this.correctAnswers);
+        console.log("marks got :"+ this.marksGot);
+        console.log("attempted :"+ this.attempted);
+      }
     });
   }
 }
