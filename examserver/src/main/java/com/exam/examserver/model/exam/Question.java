@@ -1,6 +1,7 @@
 package com.exam.examserver.model.exam;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 
@@ -20,9 +21,9 @@ public class Question {
     private String option2;
     private String option3;
     private String option4;
-    @JsonIgnore
+
     private  String answer;
-    //jsoningore -- will ingore this field. dont want to sent this feild to client.
+
     @Transient
     private String givenAnswer;
     // when transient is use hibernate ingores to map the field with database.
@@ -88,9 +89,11 @@ public class Question {
         this.option4 = option4;
     }
 
+
     public String getAnswer() {
         return answer;
     }
+
 
     public void setAnswer(String answer) {
         this.answer = answer;
