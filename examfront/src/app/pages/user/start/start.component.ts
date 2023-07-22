@@ -104,7 +104,7 @@ export class StartComponent implements OnInit{
         this._question.evalQuiz(this.questions).subscribe(
           (data:any)=>{
             console.log(data);
-            this.marksGot= data.marksGot;
+            this.marksGot= parseFloat(Number( data.marksGot).toFixed(2));
             this.correctAnswers = data.correctAnswers;
             this.attempted = data.attempted;
             this.isSubmit = true;
@@ -134,5 +134,9 @@ export class StartComponent implements OnInit{
         // console.log("correct answers :" +this.correctAnswers);
         // console.log("marks got :"+ this.marksGot);
         // console.log("attempted :"+ this.attempted);
+  }
+
+  printPage(){
+    window.print();
   }
 }
