@@ -38,5 +38,9 @@ export class QuestionService {
 
   }
 
+  //eval quiz
+  public evalQuiz(questions:any){
+    return this.http.post(`${baseUrl}/question/eval-quiz`,questions);
+  }
   
 }

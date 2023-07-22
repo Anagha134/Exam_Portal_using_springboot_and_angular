@@ -38,11 +38,6 @@ export class StartComponent implements OnInit{
         // timer contains times in seconds.
         this.timer=this.questions.length* 2 * 60;
 
-
-        this.questions.forEach( (q: any) => {
-          q['givenAnswer'] = '';
-        });
-
         console.log(data);
         this.startTimer();
         
@@ -104,22 +99,40 @@ export class StartComponent implements OnInit{
 
 
   evalQuiz(){
-        this.isSubmit = true;
+
+        // call to server to check questions
+        this._question.evalQuiz(this.questions).subscribe(
+          (data:any)=>{
+            console.log(data);
+            this.marksGot= data.marksGot;
+            this.correctAnswers = data.correctAnswers;
+            this.attempted = data.attempted;
+            this.isSubmit = true;
+
+          },
+          (error)=>{
+            console.log(error);
+          }
+        );
+
+
+
+       //this.isSubmit = true;
         
-        this.questions.forEach((q:any) =>{
-          if(q.givenAnswer == q.answer){
-            this.correctAnswers++;
-            let marksSingle = this.questions[0].quiz.maxMarks/this.questions.length;
-            this.marksGot += marksSingle;
-          }
+        // this.questions.forEach((q:any) =>{
+        //   if(q.givenAnswer == q.answer){
+        //     this.correctAnswers++;
+        //     let marksSingle = this.questions[0].quiz.maxMarks/this.questions.length;
+        //     this.marksGot += marksSingle;
+        //   }
 
-          if(q.givenAnswer.trim() != ''){
-            this.attempted++;
-          }
-        });
+        //   if(q.givenAnswer.trim() != ''){
+        //     this.attempted++;
+        //   }
+        // });
 
-        console.log("correct answers :" +this.correctAnswers);
-        console.log("marks got :"+ this.marksGot);
-        console.log("attempted :"+ this.attempted);
+        // console.log("correct answers :" +this.correctAnswers);
+        // console.log("marks got :"+ this.marksGot);
+        // console.log("attempted :"+ this.attempted);
   }
 }
